@@ -1,0 +1,169 @@
+================================================================
+   ONLINE OKEY OYUNU — KURULUM REHBERİ & GEREKSİNİMLER
+================================================================
+
+================================================================
+1. PYTHON SÜRÜMÜ
+================================================================
+
+Önerilen Sürüm : Python 3.11.x
+Minimum Sürüm  : Python 3.9+
+
+İndirme Linki  : https://www.python.org/downloads/release/python-3119/
+                 (Windows için: Windows installer (64-bit) seçin)
+
+KURULUM NOTU:
+  - Kurulum sırasında "Add Python to PATH" kutucuğunu MUTLAKA işaretleyin.
+  - Kurulum sonrası terminal/CMD açıp şunu yazın:
+      python --version
+  - Çıktı şuna benzemelidir:
+      Python 3.11.9
+
+
+================================================================
+2. PIP GÜNCELLEMESİ (Kurulumdan Sonra İlk Adım)
+================================================================
+
+Terminal / CMD'ye aşağıdaki komutu yazın:
+
+    python -m pip install --upgrade pip
+
+Beklenen çıktı:
+    Successfully installed pip-24.x.x
+
+
+================================================================
+3. KULLANILAN KÜTÜPHANELer
+================================================================
+
+------------------------------------------------------------
+A) STANDART KÜTÜPHANELer — AYRICA KURULUM GEREKMEz
+   (Python ile birlikte gelir)
+------------------------------------------------------------
+
+  Kütüphane     | Sürüm     | Kullanım Amacı
+  --------------|-----------|-------------------------------
+  socket        | built-in  | TCP istemci-sunucu bağlantısı
+  threading     | built-in  | Çoklu oyuncu thread yönetimi
+  json          | built-in  | Mesaj protokolü (serileştirme)
+  random        | built-in  | Taş karıştırma (shuffle)
+  time          | built-in  | Sıra ve bekleme kontrolü
+  queue         | built-in  | Thread-safe mesaj kuyruğu
+  sys           | built-in  | Sistem çıkışı ve argümanlar
+  os            | built-in  | Dosya/ortam işlemleri
+  logging       | built-in  | Sunucu log kaydı
+
+------------------------------------------------------------
+B) DIŞ KÜTÜPHANELer — KURULUM GEREKİR
+------------------------------------------------------------
+
+  Kütüphane     | Sürüm     | Kullanım Amacı
+  --------------|-----------|-------------------------------
+  PyQt5         | 5.15.10   | Oyun arayüzü (GUI)
+  PyQt5-sip     | 12.13.0   | PyQt5 bağımlılığı (otomatik gelir)
+  pyqt5-tools   | 5.15.9.3  | Qt Designer (opsiyonel, tasarım aracı)
+
+  NOT: PyQt5 kurulumu sırasında PyQt5-sip otomatik olarak
+       kurulur. Ayrıca kurmanıza gerek yoktur.
+
+
+================================================================
+4. KURULUM KOMUTLARI
+================================================================
+
+Aşağıdaki komutları SIRAYLA terminale yazın:
+
+---- ADIM 1: PyQt5 Kurulumu ----
+
+    pip install PyQt5==5.15.9
+
+---- ADIM 2: (Opsiyonel) Qt Designer Aracı ----
+
+    pip install pyqt5-tools==5.15.9.3.3
+
+  NOT: Bu adım zorunlu değildir. Yalnızca görsel arayüz
+       tasarımı yapmak isteyenler için gereklidir.
+
+
+================================================================
+5. KURULUM DOĞRULAMA
+================================================================
+
+Kurulumları kontrol etmek için Python terminalinde şunu çalıştırın:
+
+    python -c "import PyQt5; print('PyQt5 OK:', PyQt5.QtCore.QT_VERSION_STR)"
+
+Beklenen çıktı:
+    PyQt5 OK: 5.15.x
+
+Socket kontrolü (built-in):
+
+    python -c "import socket, threading, json, queue; print('Tüm standart kütüphaneler OK')"
+
+Beklenen çıktı:
+    Tüm standart kütüphaneler OK
+
+
+================================================================
+6. PROJE DOSYA YAPISI (Hazırlanacak Dosyalar)
+================================================================
+
+Aşağıdaki dosyalar sırasıyla sizinle paylaşılacaktır:
+
+  okey_oyunu/
+  ├── server.py          ← Sunucu: oyun mantığı, bağlantı yönetimi
+  ├── client.py          ← İstemci: PyQt5 arayüzü + ağ katmanı
+  ├── game_logic.py      ← Taş oluşturma, dağıtma, sıra, kazanma
+  ├── protocol.py        ← JSON mesaj yapıları ve sabitler
+  └── config.py          ← IP, Port, oyuncu sayısı gibi ayarlar
+
+
+================================================================
+7. ÇALIŞTIRMA SIRASI (Kurulum Sonrası)
+================================================================
+
+  1. Terminalde sunucuyu başlatın:
+       python server.py
+
+  2. Her oyuncu kendi bilgisayarında istemciyi başlatır:
+       python client.py
+
+  3. İstemci ekranında sunucu IP'sini ve adınızı girin,
+     "Bağlan" butonuna tıklayın.
+
+  4. 4 oyuncu bağlandığında oyun otomatik başlar.
+
+
+================================================================
+8. TEST ORTAMI BİLGİLERİ
+================================================================
+
+  Yerel Test (tek bilgisayar):
+    Sunucu IP: 127.0.0.1
+    Port      : 5555
+
+  Yerel Ağ (LAN) Testi:
+    Sunucu IP : Sunucunun yerel IP'si (ör: 192.168.1.x)
+    Port      : 5555
+    Komut     : ipconfig (Windows) / ifconfig (Mac/Linux)
+
+  İnternet Üzerinden Test (Önerilen Yöntem):
+    Radmin VPN  : https://www.radmin-vpn.com/
+    Kurulum     : Tüm oyuncular aynı Radmin ağına katılır.
+    Sunucu IP   : Radmin'in verdiği sanal IP kullanılır.
+
+
+================================================================
+9. SÜRÜM ÖZETİ (Hızlı Referans)
+================================================================
+
+  Python        : 3.11.9
+  PyQt5         : 5.15.10
+  PyQt5-sip     : 12.13.0   (otomatik)
+  pyqt5-tools   : 5.15.9.3  (opsiyonel)
+
+
+================================================================
+  Tüm kurulumlar tamamlandıktan sonra bildir,
+  kod dosyalarını sırasıyla paylaşmaya başlayalım.
+================================================================

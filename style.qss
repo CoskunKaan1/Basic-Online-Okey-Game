@@ -1,0 +1,565 @@
+/* ============================================================
+   ONLINE OKEY – Modern & Gerçekçi Tema
+   ============================================================ */
+
+/* Genel arka plan ve yazı tipi */
+QWidget {
+    background-color: #1E2A2A;
+    color: #E0E0D0;
+    font-family: "Segoe UI", "Arial", sans-serif;
+    font-size: 14px;
+}
+
+QLabel {
+    color: #E0E0D0;
+}
+
+/* Ana pencere */
+QMainWindow {
+    background-color: #162020;
+}
+
+/* Oyun masası alanı */
+#gameBoardArea {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                      stop:0 #1C3422,
+                                      stop:0.5 #2A4A30,
+                                      stop:1 #1C3422);
+    border: 3px solid #5C7A4A;
+    border-radius: 16px;
+    padding: 12px;
+}
+
+/* Yan panel (bilgi ve sohbet) */
+#sidePanel, #chatPanel {
+    background-color: #253030;
+    border: 2px solid #3A4A4A;
+    border-radius: 12px;
+    padding: 12px;
+    margin: 6px;
+}
+
+/* Bölüm başlıkları */
+#sectionTitle {
+    font-size: 16px;
+    font-weight: bold;
+    color: #D0B060;
+    padding: 4px 8px;
+}
+
+/* Sıra banner'ı */
+#turnBanner {
+    background-color: #2A3A3A;
+    border: 2px solid #4A5A5A;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #D0B060;
+}
+#turnBanner[myturn="true"] {
+    background-color: #3A5020;
+    border-color: #8CAA2A;
+    color: #C0FF80;
+}
+
+/* Zaman çubuğu */
+#turnTimer {
+    background-color: #1A2A2A;
+    border: 1px solid #4A5A5A;
+    border-radius: 4px;
+    height: 8px;
+}
+#turnTimer::chunk {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                                      stop:0 #D0B060,
+                                      stop:1 #F0D080);
+    border-radius: 4px;
+}
+
+/* Butonlar */
+QPushButton {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 #3A4A3A,
+                                      stop:1 #1A2A1A);
+    color: #E0E0D0;
+    border: 2px solid #5A6A5A;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: bold;
+    min-height: 20px;
+}
+QPushButton:hover {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 #4A5A4A,
+                                      stop:1 #2A3A2A);
+    border-color: #7A8A7A;
+}
+QPushButton:pressed {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 #2A3A2A,
+                                      stop:1 #1A2A1A);
+    border-color: #4A5A4A;
+}
+QPushButton:disabled {
+    background-color: #1A2A1A;
+    border-color: #2A3A2A;
+    color: #6A7A6A;
+}
+
+/* Özel butonlar */
+#primaryBtn {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 #C0A040,
+                                      stop:1 #907820);
+    border: 2px solid #C0A040;
+    color: #1A1A1A;
+    font-size: 16px;
+}
+#primaryBtn:hover {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 #D0B050,
+                                      stop:1 #A08828);
+}
+#secondaryBtn {
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                      stop:0 #505050,
+                                      stop:1 #303030);
+    border: 2px solid #606060;
+}
+
+/* Taş yuvası (RackSlot) */
+#rackSlot {
+    background-color: #0F1A12;
+    border: 1px solid #3A5A3A;
+    border-radius: 6px;
+}
+#rackSlot:hover {
+    border-color: #8A9A8A;
+}
+
+/* Karşı oyuncu kartı */
+#opponentCard {
+    background-color: #1E2E2E;
+    border: 2px solid #3A4A4A;
+    border-radius: 10px;
+    padding: 8px;
+    margin: 4px;
+}
+#opponentCard[active="true"] {
+    border-color: #D0B060;
+    background-color: #2E3E2E;
+}
+#playerName {
+    font-weight: bold;
+    color: #E0E0D0;
+}
+#tileCount {
+    color: #C0C0B0;
+    font-size: 12px;
+}
+
+/* İsteka kat çizgisi */
+QFrame[frameShape="4"] { /* HLine */
+    border-top: 3px solid #140B06;
+    border-bottom: 2px solid #5A3A24;
+}
+
+/* Sohbet penceresi */
+#chatDisplay {
+    background-color: #182222;
+    border: 1px solid #3A4A4A;
+    border-radius: 6px;
+    padding: 4px;
+    color: #C8B890;
+    font-family: "Courier New", monospace;
+}
+#chatInput {
+    background-color: #182222;
+    border: 1px solid #3A4A4A;
+    border-radius: 4px;
+    padding: 6px;
+    color: #E0E0D0;
+}
+#sendBtn {
+    background-color: #C0A040;
+    color: #1A1A1A;
+    font-weight: bold;
+    border-radius: 4px;
+    min-width: 40px;
+}
+
+/* Bilgi etiketi */
+#infoLabel {
+    color: #C0B080;
+    font-style: italic;
+}
+
+/* Okey göstergesi */
+#okeyLabel {
+    font-size: 16px;
+    font-weight: bold;
+    color: #D0B060;
+}
+
+/* Taş buton (TileButton) – sadece gölge için, stil asıl paint içinde */
+#tileBtn {
+    border: none;
+    background: transparent;
+}
+
+/* ============================================================
+   ONLINE OKEY – Modern Tema (Login & Lobi Güncellemesi)
+   ============================================================ */
+
+/* ── GENEL ────────────────────────────────────────────────── */
+QWidget {
+    background-color: #1E2A2A;
+    color: #E0E0D0;
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+/* ── GİRİŞ EKRANI (LOGIN) ─────────────────────────────────── */
+#loginPage {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                      stop:0 #152525, stop:1 #0A1818);
+}
+
+/* Başlık */
+#loginTitle {
+    font-size: 28px;
+    font-weight: bold;
+    color: #D0B060;
+    margin-bottom: 16px;
+}
+
+/* Giriş formu kartı */
+QWidget#loginFormCard {         /* opsiyonel; LoginWidget içindeki form widget'ına verilecek */
+    background-color: rgba(30, 42, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 30px;
+    min-width: 360px;
+}
+
+/* Etiketler */
+QLabel#formLabel {
+    color: #C8B890;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+/* Giriş alanları */
+QLineEdit#loginInput {
+    background-color: #1A2A2A;
+    border: 1px solid #3A4A4A;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 15px;
+    color: #E0E0D0;
+    selection-background-color: #D0B060;
+    margin: 4px 0 12px 0;
+}
+
+QLineEdit#loginInput:focus {
+    border: 1px solid #D0B060;
+
+}
+
+/* Hata mesajı */
+#errorLabel {
+    color: #FF6B6B;
+    font-weight: bold;
+    margin: 6px 0;
+    min-height: 20px;
+}
+
+/* Birincil buton (oyuna bağlan) */
+#primaryBtn {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #D4AC52, stop:1 #A07820);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    color: #1A1A1A;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+#primaryBtn:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #E8C060, stop:1 #B48830);
+    border: 1px solid #F0D080;
+}
+
+#primaryBtn:pressed {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #B08828, stop:1 #906818);
+}
+
+#primaryBtn:disabled {
+    background: #5A5A5A;
+    color: #A0A0A0;
+}
+
+/* ── BEKLEME LOBİSİ (WAITING) ─────────────────────────────── */
+#waitingPage {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                      stop:0 #1A2A2A, stop:1 #0F1A1A);
+}
+
+/* Ana cam kart */
+#waitingCard {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 rgba(255,255,255,0.1),
+                                stop:1 rgba(255,255,255,0.05));
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 24px;
+    padding: 32px;
+    min-width: 420px;
+}
+
+/* Başlık */
+#waitingTitle {
+    font-size: 26px;
+    font-weight: bold;
+    color: #D0B060;
+    letter-spacing: 1px;
+}
+
+/* Animasyonlu nokta */
+#waitingDots {
+    font-size: 22px;
+    color: #D0B060;
+    min-height: 32px;
+}
+
+/* Oyuncu listesi */
+#playerList {
+    background-color: rgba(0, 0, 0, 0.35);
+    border: 1px solid #3A4A4A;
+    border-radius: 14px;
+    padding: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+/* Her bir oyuncu öğesi – “isimlere kutucuk” efekti */
+#playerList::item {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    margin: 4px 8px;
+    padding: 8px 12px;
+    min-height: 36px;
+}
+
+#playerList::item:selected {
+    background-color: rgba(208, 176, 96, 0.2);
+    border-color: #D0B060;
+}
+
+/* Oyuncu sayacı */
+#waitingCounter {
+    font-size: 16px;
+    color: #C8B890;
+    font-weight: bold;
+}
+
+/* Geri dön butonu (iptal) */
+#cancelBtn {
+    background-color: rgba(180, 80, 80, 0.7);
+    color: #F0D0D0;
+    border: 1px solid rgba(200, 100, 100, 0.8);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#cancelBtn:hover {
+    background-color: rgba(200, 80, 80, 0.9);
+    border-color: #FF8A8A;
+}
+
+/* ───────────────────────────────────────────────────────────
+   Var olan oyun ekranı stilleri (değişiklik yok, sadece taş butonu vs.)
+   Bu stiller aynen korunur; aşağıya kopyalamıyorum.
+   Gerekirse mevcut style.qss'inize ekleyin.
+   ─────────────────────────────────────────────────────────── */
+
+   /* ── GİRİŞ EKRANI (LOGIN) ─────────────────────────────────── */
+#loginPage {
+    background-color: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                      stop:0 #152525, stop:1 #0A1818);
+}
+
+#loginCard {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 rgba(255,255,255,0.1),
+                                stop:1 rgba(255,255,255,0.03));
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 26px;
+    padding: 32px;
+    min-width: 380px;
+}
+
+#loginTitle {
+    font-size: 30px;
+    font-weight: bold;
+    color: #D0B060;
+    letter-spacing: 1px;
+}
+
+#loginSubtitle {
+    font-size: 14px;
+    color: #A0A090;
+    margin-bottom: 8px;
+}
+
+/* Etiketler */
+QLabel {
+    color: #C8B890;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+/* Giriş alanları */
+QLineEdit#loginInput {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 1px solid #3A4A4A;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 15px;
+    color: #E0E0D0;
+    selection-background-color: #D0B060;
+    margin-bottom: 6px;
+}
+
+QLineEdit#loginInput:focus {
+    border: 1px solid #D0B060;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+QLineEdit#loginInput::placeholder {
+    color: #6A7A6A;
+    font-style: italic;
+}
+
+/* Hata mesajı */
+#errorLabel {
+    color: #FF6B6B;
+    font-weight: bold;
+    margin: 8px 0;
+    min-height: 22px;
+}
+
+/* Birincil buton (oyuna bağlan) */
+#primaryBtn {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #D4AC52, stop:1 #A07820);
+    border: none;
+    border-radius: 12px;
+    padding: 14px 20px;
+    color: #1A1A1A;
+    font-weight: bold;
+    font-size: 17px;
+    margin-top: 8px;
+}
+
+#primaryBtn:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #E8C060, stop:1 #B48830);
+}
+
+#primaryBtn:pressed {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #B08828, stop:1 #906818);
+}
+
+#primaryBtn:disabled {
+    background: #5A5A5A;
+    color: #A0A0A0;
+}
+
+/* ── BAŞLATICI (LAUNCHER) ─────────────────────────────────── */
+#launcherCard {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                stop:0 rgba(255,255,255,0.12),
+                                stop:1 rgba(255,255,255,0.05));
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 28px;
+    padding: 40px;
+    min-width: 420px;
+}
+
+#launcherTitle {
+    font-size: 32px;
+    font-weight: bold;
+    color: #D0B060;
+    letter-spacing: 1px;
+}
+
+#launcherSubtitle {
+    font-size: 15px;
+    color: #B0B0A0;
+    margin-bottom: 8px;
+}
+
+/* Birincil buton (Sunucu Başlat) - zaten #primaryBtn tanımlı olabilir,
+   ama başlatıcı için ekstra vurgu yapmak isterseniz özel bırakabilirsiniz. */
+#primaryBtn {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #D4AC52, stop:1 #A07820);
+    border: none;
+    border-radius: 12px;
+    padding: 14px 20px;
+    color: #1A1A1A;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#primaryBtn:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #E8C060, stop:1 #B48830);
+}
+
+#primaryBtn:pressed {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #B08828, stop:1 #906818);
+}
+
+#primaryBtn:disabled {
+    background: #5A5A5A;
+    color: #A0A0A0;
+}
+
+/* İkincil buton (Oyuna Bağlan) */
+#secondaryBtn {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #2C3E50, stop:1 #1A252F);
+    border: 1px solid #3A4A5A;
+    border-radius: 12px;
+    padding: 14px 20px;
+    color: #E0E0D0;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#secondaryBtn:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #3A5068, stop:1 #243040);
+    border-color: #5A6A7A;
+}
+
+#secondaryBtn:pressed {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #1A252F, stop:1 #0F161C);
+}
+/* Tüm QLabel'leri şeffaf yap */
+QLabel {
+    background-color: transparent;
+}
